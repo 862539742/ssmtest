@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.30'
+	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.20'
 	compile group: 'org.springframework', name: 'spring-core', version: '4.0.2.RELEASE'
 	compile group: 'org.springframework', name: 'spring-webmvc', version: '4.0.2.RELEASE'
 	compile group: 'org.springframework', name: 'spring-web', version: '4.0.2.RELEASE'
@@ -41,5 +41,10 @@ dependencies {
 	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
 	compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.21'
 	compile group: 'javax', name: 'javaee-api', version: '7.0'
+	compile group: 'org.apache.shiro', name: 'shiro-core', version: '1.2.2'
+compile group: 'org.apache.shiro', name: 'shiro-web', version: '1.2.2'
+compile group: 'org.apache.shiro', name: 'shiro-ehcache', version: '1.2.2'
+compile group: 'org.apache.shiro', name: 'shiro-spring', version: '1.2.2'
+	
     testCompile 'junit:junit:4.12'
 }

@@ -11,6 +11,8 @@ public interface UserinfoMapper {
     int insertSelective(Userinfo record);
 
     Userinfo selectByPrimaryKey(String id);
+    
+    Userinfo selectByUserName(String userName);
 
     int updateByPrimaryKeySelective(Userinfo record);
 

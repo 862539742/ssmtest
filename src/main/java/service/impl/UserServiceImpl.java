@@ -16,8 +16,12 @@ public class UserServiceImpl implements IUserService {
 	UserinfoMapper userDao;
 	@Override
 	public Userinfo getUserById(String userId) {
-		// TODO Auto-generated method stub
 		return this.userDao.selectByPrimaryKey(userId);
+	}
+	@Override
+	public Userinfo getUserByUsername(String userName) {
+		// TODO Auto-generated method stub
+		return this.userDao.selectByUserName(userName);
 	}
 
 }
