@@ -8,14 +8,12 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
-import org.apache.shiro.realm.AuthenticatingRealm;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Component;
 
-import pojo.Userinfo;
-import service.IUserService;
+import pojo.SysUser;
+import service.SysUserService;
 
 /**
  * 自定义realm
@@ -25,18 +23,18 @@ import service.IUserService;
 public class MyRealm extends AuthorizingRealm {
 
 	@Resource
-	private IUserService userService=null;
+	private SysUserService sysUserService=null;
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken token) throws AuthenticationException {
 		UsernamePasswordToken usernamePasswordToken=(UsernamePasswordToken)token;
-		String username=usernamePasswordToken.getUsername();
-		Userinfo userinfo=userService.getUserByUsername(username);
-		if (userinfo==null) {
+		String userName=usernamePasswordToken.getUsername();
+		SysUser user=sysUserService.selectByPrimaryUserName(userName);
+		if (user==null) {
 			return null;
 		}
-		String passwordFromDB=userinfo.getPassword();
-		AuthenticationInfo info=new SimpleAuthenticationInfo(userinfo,passwordFromDB,this.getClass().getSimpleName());
+		String passwordFromDB=user.getUserPass();
+		AuthenticationInfo info=new SimpleAuthenticationInfo(user,passwordFromDB,this.getClass().getSimpleName());
 		return info;
 	}
 	@Override

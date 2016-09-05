@@ -26,26 +26,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import pojo.Userinfo;
+import pojo.SysUser;
 
 import com.alibaba.fastjson.JSON;
 
-import service.IUserService;
+import service.SysUserService;
 
 @Controller
 public class Usercontroller{
 	@Resource
-	private IUserService userService = null;
+	private SysUserService sysUserService = null;
+	
 	@ResponseBody
 	@RequestMapping(value="/user.action",method=RequestMethod.GET)
-	public Userinfo test(HttpServletResponse response,String id) throws IOException{
-		Userinfo userinfo=userService.getUserById(id);
-		if (userinfo==null) {
+	public SysUser test(HttpServletResponse response,int id) throws IOException{
+		SysUser user=sysUserService.selectByPrimaryKey(id);
+		if (user==null) {
 			response.getWriter().append("{\"result\":\"false\"}");
 			return null;
 		}else {
 //			response.getWriter().append(JSON.toJSONString(userinfo));
-			return userinfo;
+			return user;
 		}
 	}
 	//登陆
@@ -87,8 +88,8 @@ public class Usercontroller{
 	}
 	@RequestMapping("/userByUsername.action")
 	public void userByUsername(HttpServletResponse response,String userName) throws IOException{
-		Userinfo userinfo=userService.getUserByUsername(userName);
-		response.getWriter().append(JSON.toJSONString(userinfo));
+		SysUser user=sysUserService.selectByPrimaryUserName(userName);
+		response.getWriter().append(JSON.toJSONString(user));
 	}
 	@RequestMapping("/loginOut.action")
 	public void loginOut(HttpServletResponse response) throws IOException{
