@@ -11,6 +11,8 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 version = '1'
+//解决编译、生成JavaDOC和测试时注释的乱码问题
+[compileJava, javadoc, compileTestJava]*.options*.encoding = 'UTF-8'
 
 repositories {
     jcenter()

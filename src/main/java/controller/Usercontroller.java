@@ -41,7 +41,7 @@ public class Usercontroller{
 	 * 用户登录检验
 	 * @param username 用户名
 	 * @param password 密码
-	 * @return
+	 * @return 主界面
 	 */
 	@RequestMapping(value="/loginCheck.action",method=RequestMethod.POST)
 	public String loginCheck(String username,String password){
